@@ -1,0 +1,7 @@
+ &bands
+    prefix  = 'm1'
+    filband = 'bands.m1.dat'
+    outdir  = './out/'
+ /
+
+

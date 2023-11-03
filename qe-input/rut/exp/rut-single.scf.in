@@ -1,0 +1,42 @@
+&CONTROL
+  calculation = 'scf',
+  prefix = 'rut',
+  pseudo_dir         = '../pseudo/',
+  outdir             = './out/',
+  verbosity = 'high',
+/
+&SYSTEM
+    ibrav = 0
+    nat = 6
+    ntyp = 2
+    ecutwfc = 70
+    ecutrho = 840
+    nbnd = 60
+    occupations = 'smearing'
+    smearing = 'marzari-vanderbilt'
+    degauss = 0.01
+ /
+ &electrons
+    conv_thr =  1.0d-8
+    mixing_beta = 0.3
+ /
+ATOMIC_SPECIES
+   V 50.94 v_pbe_v1.4.uspp.F.UPF
+   O 16.00 o_pbe_v1.2.uspp.F.UPF
+   
+CELL_PARAMETERS angstrom
+ 4.5546  0.0000  0.0000
+ 0.0000  4.5546  0.0000
+ 0.0000  0.0000  2.8514
+
+ATOMIC_POSITIONS crystal
+ V  0.0000  0.0000  0.0000
+ V  0.5000  0.5000  0.5000
+ O  0.3001  0.3001  0.0000
+ O -0.3001 -0.3001  0.0000
+ O  0.8001  0.1999  0.5000
+ O -0.8001 -0.1999  0.5000
+
+K_POINTS automatic
+6 6 9  0 0 0
+

@@ -1,0 +1,8 @@
+&PROJWFC
+    prefix = 'm1'
+    filpdos = 'm1'
+    kresolveddos = .false.
+    outdir = './out'
+    degauss = 0.005
+ /
+

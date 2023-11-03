@@ -1,0 +1,7 @@
+ &bands
+    prefix  = 'rut'
+    filband = 'bands.rut.dat'
+    outdir  = './out/'
+ /
+
+

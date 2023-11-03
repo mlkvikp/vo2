@@ -1,0 +1,50 @@
+&CONTROL
+  calculation = 'nscf',
+  prefix = 'm1',
+  pseudo_dir         = '../../../pseudo/',
+  outdir             = './out/',
+  verbosity = 'high',
+/
+&SYSTEM
+  degauss = 0.0001,
+  ecutrho = 840,
+  ecutwfc = 70,
+  nbnd = 70,
+  occupations = 'smearing',
+  smearing = 'marzari-vanderbilt',
+  ibrav = 0,
+  nat = 12,
+  ntyp = 2,
+/
+&ELECTRONS
+   conv_thr = 5.0d-8,
+/
+&IONS
+/
+&CELL
+/
+ATOMIC_SPECIES
+   V 50.94 v_pbe_v1.4.uspp.F.UPF
+   O 16.00 o_pbe_v1.2.uspp.F.UPF
+
+K_POINTS automatic
+ 8 8 10  0 0 0
+
+CELL_PARAMETERS angstrom
+ 5.7028  0.0000  0.0000
+ 0.0000  3.2206  3.2206
+-2.8514 -3.2206  3.2206
+
+ATOMIC_POSITIONS crystal
+V 0.51053000 0.97894000 0.97354000
+V 0.98947000 1.02106000 1.02646000
+V 0.51053000 0.52106000 0.47354000
+V 0.98947000 0.47894000 0.52646000
+O 0.15051000 0.29742000 0.29884000
+O 0.64384000 0.28815000 0.29141000
+O 0.85616000 0.71185000 0.70859000
+O 0.34949000 0.70258000 0.70116000
+O 0.34949000 0.79742000 0.20116000
+O 0.85616000 0.78815000 0.20859000
+O 0.64384000 0.21185000 0.79141000
+O 0.15051000 0.20258000 0.79884000

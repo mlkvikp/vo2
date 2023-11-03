@@ -1,0 +1,8 @@
+&PROJWFC
+    prefix = 'rut'
+    filpdos = 'rut'
+    kresolveddos = .false.
+    outdir = './out'
+    degauss = 0.005
+ /
+

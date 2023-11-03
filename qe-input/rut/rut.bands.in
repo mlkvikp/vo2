@@ -1,0 +1,63 @@
+&CONTROL
+  calculation = 'bands',
+  prefix = 'rut',
+  pseudo_dir         = '../pseudo/',
+  outdir             = './out/',
+  verbosity = 'high',
+/
+&SYSTEM
+  degauss = 0.0001,
+  ecutrho = 840,
+  ecutwfc = 70,
+  nbnd = 70,
+  occupations = 'smearing',
+  smearing = 'marzari-vanderbilt',
+  ibrav = 0,
+  nat = 12,
+  ntyp = 2,
+/
+&ELECTRONS
+   conv_thr = 1.0d-8,
+/
+&IONS
+/
+&CELL
+/
+ATOMIC_SPECIES
+   V 50.94 v_pbe_v1.4.uspp.F.UPF
+   O 16.00 o_pbe_v1.2.uspp.F.UPF
+
+K_POINTS {crystal_b}
+12
+  0.0 0.0 0.0 20
+  0.0 0.0 0.5 20  
+  0.0 0.5 0.5 20  
+  0.0 0.5 0.0 20
+  0.0 0.0 0.0 20           
+  0.5 0.0 -0.5 20 
+  0.5 0.5 -0.5 20
+  0.0 0.5 0.0 20           
+  0.0 0.0 0.0 20 
+  0.5 0.0 0.0 20
+  0.5 0.5 0.0 20           
+  0.0 0.5 0.0 20 
+
+
+CELL_PARAMETERS angstrom
+ 5.7028  0.0000  0.0000
+ 0.0000  3.2206  3.2206
+-2.8514 -3.2206  3.2206
+
+ATOMIC_POSITIONS crystal
+V 0.5  1.0  1.0
+V 1.0  1.0  1.0
+V 0.5  0.5  0.5
+V 1.0  0.5  0.5
+O 0.15005  0.30010  0.30010
+O 0.65005  0.30010  0.30010
+O 0.85005  0.69990  0.69990
+O 0.35005  0.69990  0.69990
+O 0.35005  0.80010  0.19990
+O 0.85005  0.80010  0.19990
+O 0.65005  0.19990  0.80010
+O 0.15005  0.19990  0.80010
