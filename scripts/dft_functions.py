@@ -39,7 +39,7 @@ class ParseQEO:
     def Process(self, filestring, spin_polarize=False, Hubbard_U=False, Debug=False):
         f = open(filestring, "r")
         linenum = 0
-        #'i' stands for the line in this script
+        # 'i' stands for the line in this script
         for i in f:
             # debug mode
             if Debug:
@@ -193,51 +193,6 @@ class ParseQEO:
                         "xy",
                         "x^2-y^2",
                     ]
-
-            """
-      band_condition = (
-        "End of self-consistent calculation" in i or
-        "End of band structure calculation" in i 
-      )
-      
-
-      if band_condition: #The band diagram is stored in lines of 8 entries
-        if np.floor(self.bands/8.)*8. <= self.bands:
-          numlines = int(np.floor(self.bands/8.) + 1)
-          remainder = int(self.bands - np.floor(self.bands/8.)*8.)
-        else: 
-          numlines = int(np.floor(self.bands/8.))
-          remainder = 0
-        
-        if spin_polarize == True:
-          self.bnddiagram =  np.zeros((self.kpts,self.bands, 2))
-          spin_iter = [0,1]
-        else:
-          spin_iter = [0]
-          self.bnddiagram = np.zeros((self.kpts,self.bands,1))
-        
-        for polarization in spin_iter:
-          counter = 0
-          while counter < self.kpts:
-            # if 'SPIN' in line:
-              # print('Parsing: ' + line) 
-            
-            line = next(f)
-            
-            if "k =" in line:
-              line = next(f)
-              counter1 = 0
-              for j in range(0,numlines):
-                line = next(f)
-                for k in range(0,len(line.split())):
-                  self.bnddiagram[counter][counter1 + k][polarization] = float(line.split()[k])
-                counter1 += 8
-              counter += 1
-             
-          next
-        next  
-      """
-
             if "highest occupied, lowest unoccupied level (ev)" in i:
                 self.bandgap = float(i.split()[7]) - float(i.split()[6])
                 next
@@ -273,20 +228,6 @@ class ParseQEO:
             * 180.0
             / np.pi
         )
-        if self.FermiTest == True:  # The bandgap is now in the band diagram
-            self.bnddiagram = np.subtract(self.bnddiagram, self.Fermi)
-            emin = np.zeros(self.kpts)
-            emax = np.zeros(self.kpts)
-            counter = 0
-            # NEED TO FIX, BANDGAP IS OBTAINABLE ONLY
-            # FOR SINGLE SPIN POLARIZATION
-            """
-      for j in self.bnddiagram[:,:,0]:
-        emin[counter] = j[np.searchsorted(j,  0.0,side='right')-1]
-        emax[counter] = j[np.searchsorted(j,  0.0,side='right')]
-        counter += 1
-      self.bandgap = float(np.min(emax-emin))
-      """
 
     def to_JSON(self, outfile):
         for i in self.lattice:
@@ -464,7 +405,6 @@ def vo2_pdos2(fname, n_cells, E_fermi, spin=False, sd_reversal=False):
     n_V = 2 * n_cells
 
     _, pdos_tot = data_loader(fname + ".pdos_tot", spin)
-    l = len(pdos_tot)
 
     o_pdos_s = []
     o_pdos_p = []
@@ -596,10 +536,7 @@ def vo2_pdos3(fname, outname, n_cells, E_fermi, spin=False, sd_reversal=False):
 
     atoms_names = [j[0] for j in struc.atoms[:]]
 
-    n_at = atoms_names
-
     _, pdos_tot = data_loader(fname + ".pdos_tot", spin)
-    l = len(pdos_tot)
 
     o_pdos_s = []
     o_pdos_p = []
@@ -884,8 +821,6 @@ def parse_filband(feig, npl=10):
     nks = int(shape[3])
     eig = np.zeros((nks, nbnd + 1), dtype=np.float32)
 
-    dividend = nbnd
-    divisor = npl
     div = nbnd // npl + 1 if nbnd % npl == 0 else nbnd // npl + 2
     kinfo = []
     for index, value in enumerate(lines[1:]):
