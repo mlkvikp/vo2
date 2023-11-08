@@ -1,0 +1,6 @@
+&bands
+    prefix  = 'm1'
+    outdir = './work'
+    filband = 'bands2.m1.dat'
+/
+
