@@ -1107,3 +1107,34 @@ def get_indices(outfname):
     Ge_inds = [x + 1 for x in Ge_ind]
 
     return O_inds, V_inds, Ge_inds
+
+
+# %%
+def calculate_gap(bands: list[[[float]]], fermi: float, epsilon=0.05):
+    # these are the bands around the Fermi level
+    bands = bands[45:58]
+    energies = bands[:, :, 1]
+
+    energies -= fermi
+
+    # separate into bands below and above the fermi level at Y point (can still cross)
+    # added 0.2 because Y-point is not always good
+    higher_energies = list(
+        filter(lambda band: band[int(1 / 12 * len(band))] - 0.2 > 0, energies)
+    )
+    lower_energies = list(
+        filter(lambda band: band[int(1 / 12 * len(band))] - 0.2 < 0, energies)
+    )
+    # Y point (int(1 / 12 * len(band))) is the reference point to separate into lower and higher bands
+
+    # these are the indices of the bands that have the minimal/maximal energy
+    min_higher_band_ind = np.argmin(np.array([min(band) for band in higher_energies]))
+    max_lower_band_ind = np.argmax(np.array([max(band) for band in lower_energies]))
+
+    high_band = higher_energies[min_higher_band_ind]
+    low_band = lower_energies[max_lower_band_ind]
+
+    if np.all(high_band > (low_band + epsilon)):
+        return min(high_band) - max(low_band)
+    else:
+        return 0
