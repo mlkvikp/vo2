@@ -1,5 +1,4 @@
 #!/bin/bash
 
-source /cluster/apps/local/env2lmod.sh
-source /cluster/project/spaldin/use_new_repository.sh
-module load gcc/6.3.0  openmpi/4.0.2  quantum_espresso/7.2
+module load stack
+module load openmpi/4.1.6 openblas/0.3.24 netlib-scalapack/2.2.0 libszip/2.1.1-gz5ijo3 hdf5/1.14.3 fftw/3.3.10
